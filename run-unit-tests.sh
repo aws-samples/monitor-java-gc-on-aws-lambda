@@ -1,0 +1,1 @@
+cd functions/stream-logs && npm test

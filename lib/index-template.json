@@ -1,0 +1,48 @@
+{
+    "index_patterns": [
+        "gc-logs-*"
+    ],
+    "mappings": {
+        "properties": {
+            "@timestamp": {
+                "type": "date"
+            },
+            "@gc_cause": {
+                "type": "keyword",
+                "index": true
+            },
+            "@gc_duration": {
+                "type": "double"
+            },
+            "@gc_type": {
+                "type": "keyword",
+                "index": true
+            },
+            "@heap_after_gc": {
+                "type": "long"
+            },
+            "@heap_before_gc": {
+                "type": "long"
+            },
+            "@heap_size_gc": {
+                "type": "long"
+            },
+            "@log_group": {
+                "type": "keyword",
+                "index": true
+            },
+            "@log_stream": {
+                "type": "keyword",
+                "index": true
+            },
+            "@owner": {
+                "type": "keyword",
+                "index": true
+            }
+        }
+    },
+    "settings": {
+        "number_of_shards": "1",
+        "number_of_replicas": "0"
+    }
+}
