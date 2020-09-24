@@ -17,13 +17,13 @@ export class SearchStack extends Stack {
 
     super(scope, id, props);
 
-    const applicationPrefix = new CfnParameter(this, 'applicationPrefix', { 
+    const applicationPrefix = new CfnParameter(this, 'applicationPrefix', {
       default: this.node.tryGetContext('applicationPrefix'),
       description: "Prefix for the Amazon Cognito domain and the Amazon Elasticsearch Service domain",
       type: "String",
       allowedPattern: "^[a-z0-9]*$",
       minLength: 3,
-      maxLength: 20 
+      maxLength: 20
     }).valueAsString;
 
     const userPool = new CfnUserPool(this, "userPool", {
@@ -61,10 +61,11 @@ export class SearchStack extends Stack {
     });
 
     const esDomain = new CfnDomain(this, "searchDomain", {
-      elasticsearchClusterConfig: { instanceType: "t2.small.elasticsearch" },
+      elasticsearchClusterConfig: { instanceType: "t3.small.elasticsearch" },
       ebsOptions: { volumeSize: 10, ebsEnabled: true },
       elasticsearchVersion: "7.7",
       domainName: applicationPrefix,
+      encryptionAtRestOptions: { enabled: true },
 
       // Trust the cognito authenticated Role
       accessPolicies: {
@@ -93,12 +94,12 @@ export class SearchStack extends Stack {
     esDomain.addPropertyOverride('CognitoOptions.RoleArn', esRole.roleArn);
     esDomain.addPropertyOverride('CognitoOptions.UserPoolId', userPool.ref);
 
-    new CfnOutput(this, 'createUserUrl', { 
+    new CfnOutput(this, 'createUserUrl', {
       description: "Create a new user in the user pool here.",
       value: "https://" + this.region + ".console.aws.amazon.com/cognito/users?region=" + this.region + "#/pool/" + userPool.ref + "/users"
     });
 
-    new CfnOutput(this, 'kibanaUrl', { 
+    new CfnOutput(this, 'kibanaUrl', {
       description: "Access Kibana via this URL.",
       value: "https://" + esDomain.attrDomainEndpoint + "/_plugin/kibana/"
     });

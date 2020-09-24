@@ -10,7 +10,7 @@ With this solution you emit and collect data to monitor the JVM garbage collecto
 
 ## Get Started
 
-To start, launch the solution architecture described above as a prepackaged application from the AWS Serverless Application Repository. It contains all resources ready to visualize the garbage collection logs for your Java 11 AWS Lambda functions in a Kbana dashboard. The search cluster consists of a single `t2.small.elasticsearch` instance with 10GB of EBS storage. It is protected with Amazon Cognito User Pools so you only need to add your user(s). The T2 instance types do not support encryption of data at rest. The application template prefixes the search domain and the Amazon Cognito Hosted UI with a string that you can define with the `applicationPrefix` template parameter.
+To start, launch the solution architecture described above as a prepackaged application from the AWS Serverless Application Repository. It contains all resources ready to visualize the garbage collection logs for your Java 11 AWS Lambda functions in a Kbana dashboard. The search cluster consists of a single `t3.small.elasticsearch` instance with 10GB of EBS storage. It is protected with Amazon Cognito User Pools so you only need to add your user(s). The application template prefixes the search domain and the Amazon Cognito Hosted UI with a string that you can define with the `applicationPrefix` template parameter.
 
 ### Option A: Spin up the application from the AWS Serverless Application Repository:
 
@@ -158,7 +158,7 @@ Standard AWS charges apply to the resources you deploy with this template.
 
 Cost for the processing and transformation of your function's Amazon CloudWatch Logs incurs when your function is called. This cost depends on your application and how often GC activities are triggered.
 
-Amazon Elasticsearch Service provides customers in the [AWS Free Tier](https://aws.amazon.com/free/) free usage of up to 750 hours per month of the configuration in this template, i.e. a single-AZ `t2.small.elasticsearch` instance and 10GB of EBS storage for up to one year from the date the account was created. If you exceed the free tier limits, you will be charged the Amazon Elasticsearch Service rates for the additional resources you use. Read an [estimate of the monthly cost of the search cluster](https://calculator.aws/#/estimate?id=2eb5bf80f1aa4177a0021101488874078a2d847e).
+Amazon Elasticsearch Service provides customers in the [AWS Free Tier](https://aws.amazon.com/free/) free usage of up to 750 hours per month of the configuration in this template, i.e. a single-AZ `t3.small.elasticsearch` instance and 10GB of EBS storage for up to one year from the date the account was created. If you exceed the free tier limits, you will be charged the Amazon Elasticsearch Service rates for the additional resources you use. Read an [estimate of the monthly cost of the search cluster](https://calculator.aws/#/estimate?id=2eb5bf80f1aa4177a0021101488874078a2d847e).
 
 The Amazon Cognito User Pool feature has a free tier of 50,000 monthly active users for users who sign in directly to Cognito User Pools. The free tier does not automatically expire at the end of your 12 month AWS Free Tier term, and it is available to both existing and new AWS customers indefinitely.
 
