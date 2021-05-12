@@ -18,40 +18,24 @@ To start, launch the solution architecture described above as a prepackaged appl
 
 ### Option B: Deploy the template from code
 
-You deploy the template with [AWS Serverless Application Model](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) (AWS SAM). Additionally, you will need the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and the [CDK](https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html).
+You deploy the template through the AWS Cloud Development Kit (CDK). You must install and configure the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) and the [CDK](https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html).
 
-1. The CDK template is written in TypeScript. TypeScript sources must be compiled to JavaScript initially and after each modification. Open a new terminal and keep this terminal open in the background if you like to change the source files. Change the directory to the one where `cdk.json` is and execute:
+The CDK template is written in TypeScript. TypeScript sources must be compiled to JavaScript initially and after each modification. Open a new terminal and keep this terminal open in the background if you like to change the source files. Change the directory to the one where `cdk.json` is and execute:
 
-    ```bash
-    npm install
-    npm run watch
-    ```
+```bash
+npm install
+npm run watch
+```
 
-    Read the [CDK developer guide](https://docs.aws.amazon.com/cdk/latest/guide/home.html) for more information.
+Read the [CDK developer guide](https://docs.aws.amazon.com/cdk/latest/guide/home.html) for more information.
 
-2. Synthesize the CDK template to an AWS CloudFormation template:
+### Deployment using CDK
 
-    ```bash
-    cdk synth --version-reporting false > synth.yaml
-    ```
+Create or update the application with `cdk deploy`.
 
-3. Optionally run the tests:
-
-    ```bash
-    ./run-unit-tests.sh
-    ```
-
-4. Build the application. The `sam build` builds all AWS Lambda functions with `npm`:
-
-    ```bash
-    sam build -t synth.yaml
-    ```
-
-5. Package and deploy the template. `sam deploy` [transforms](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-deploying.html) the template to AWS CloudFormation code and uploads this template and the AWS Lambda function code as a package to S3.
-
-    ```bash
-    sam deploy --guided
-    ```
+```bash
+cdk deploy --parameters applicationPrefix=<PREFIX>
+```
 
 ### Access the Example Dashboard
 
