@@ -1,6 +1,12 @@
 {
-  "name": "search",
+  "name": "monitor-java-gc-on-aws-lambda",
   "version": "1.1.1",
+  "description": "This is the implementation for the solution architecture introduced in the blog post about monitoring the Java Virtual Machine garbage collection on AWS Lambda. With this solution you emit and collect data to monitor the JVM garbage collector activity. Having this data, you can visualize out-of-memory situations of your applications in a Kibana dashboard like in the following screenshot. You gain actionable insights into your application’s memory consumption on AWS Lambda for troubleshooting and optimization.",
+  "author": {
+    "name": "Steffen Grunwald"
+  },
+  "license": "MIT-0",
+  "homepage": "https://github.com/aws-samples/monitor-java-gc-on-aws-lambda",
   "bin": {
     "search": "bin/search.js"
   },
