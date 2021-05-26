@@ -28,7 +28,7 @@ def main(assets, template, package, bucket, build_no, commit):
 
     # read assets file
     with open(assets) as input_file:
-        asset_doc = yaml.load(input_file, Loader=yaml.FullLoader)
+        asset_doc = yaml.safe_load(input_file)
 
     change_asset_destination(asset_doc, bucket)
 
@@ -38,7 +38,7 @@ def main(assets, template, package, bucket, build_no, commit):
 
     # read template file
     with open(template) as input_file:
-        template_doc = yaml.load(input_file, Loader=yaml.FullLoader)
+        template_doc = yaml.safe_load(input_file)
 
     change_template_bucket(template_doc, bucket)
 
@@ -52,7 +52,7 @@ def main(assets, template, package, bucket, build_no, commit):
 
     # read package file
     with open(package) as package_file:
-        package_doc = yaml.load(package_file, Loader=yaml.FullLoader)
+        package_doc = yaml.safe_load(package_file)
 
     sem_ver = ("%s+%s.%s" % (package_doc["version"], build_no, commit_short))
 
